@@ -1,0 +1,929 @@
+Please enter a MongoDB connection string (Default: mongodb://localhost/):
+
+Current Mongosh Log ID: 44d218924a5329f1a3514623
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.2
+Using MongoDB:          6.0.4
+Using Mongosh:          1.6.2
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2023-01-26T10:13:17.890-03:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+------
+   Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+   metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+   The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+   and anyone you share the URL with. MongoDB may use this information to make product
+   improvements and to suggest MongoDB products and deployment options to you.
+
+   To enable free monitoring, run the following command: db.enableFreeMonitoring()
+   To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+------
+
+test> show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+mibase   80.00 KiB
+test> use mibase
+switched to db mibase
+mibase> show collections
+personas
+usuarios
+base> show dbs
+admin    40.00 KiB
+config  106.00 KiB
+local    40.00 KiB
+base   80.00 KiB
+base> show dbs
+admin       40.00 KiB
+config     108.00 KiB
+ecommerce   16.00 KiB
+local       40.00 KiB
+mibase      80.00 KiB
+mibase> use ecommerce
+switched to db ecommerce
+ecommerce> show dbs
+admin       40.00 KiB
+config     108.00 KiB
+ecommerce   16.00 KiB
+local       40.00 KiB
+mibase      80.00 KiB
+ecommerce> show collections
+mensajes
+productos
+ecommerce> db.productos.insert([)
+Uncaught:
+SyntaxError: Unexpected token (1:21)
+
+> 1 | db.productos.insert([)
+    |                      ^
+  2 |
+
+ecommerce>   {
+...     "id": 1,
+...     "title": "Mouse Logitech",
+...     "price": 7068,
+...     "thumbnail": "https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png"
+...   },
+...   {
+...     "id": 2,
+...     "title": "Teclado Hyper X",
+...     "price": 20000,
+...     "thumbnail": "https://i.blogs.es/82b791/hyperx-alloy-origins-60/1366_2000.jpeg"
+...   },
+...   {
+...     "id": 3,
+...     "title": "Auriculares Astro A10",
+...     "price": 12000,
+...     "thumbnail": "https://www.qloud.ar/SITES/IMG/BEKOM/51_12-10-2022-06-10-25-0000000000411388000235985a10np3.png"
+...   }
+... ]
+ecommerce> show collections
+mensajes
+productos
+ecommerce> db.productos.insert([{"id": 1, "title": "Mouse Logitech", "price": 7068, "thumbnail": "https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png"}])
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("63d2ae8fff191fff802c3081") }
+}
+ecommerce>  show collections
+mensajes
+productos
+ecommerce> db.productos.find()
+[
+  {
+    _id: ObjectId("63d2ae8fff191fff802c3081"),
+    id: 1,
+    title: 'Mouse logitech',
+    price: 7068,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2afb989d2dbbbe3eb2849"),
+    id: 2,
+    title: 'Teclado Hyper X',
+    price: 20000,
+    thumbnail: 'https://i.blogs.es/82b791/hyperx-alloy-origins-60/1366_2000.jpeg'
+  }
+]
+
+ecommerce> Db.mensajes.insert([{"id": "55", "user": "matias@gmail.com", "mensaje": "Hola", "date": "26/12/2022 20:40:20"  }])
+ReferenceError: Db is not defined
+ecommerce> db.mensajes.insert([{"id": "55", "user": "matias@gmail.com", "mensaje": "Hola", "date": "26/12/2022 20:40:20"  }])
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("63d2b1f1ff191fff802c3082") }
+}
+ecommerce> db.mensajes.find()
+[
+  {
+    _id: ObjectId("63d2b1f1ff191fff802c3082"),
+    id: '43',
+    user: 'matias@gmail.com',
+    mensaje: 'Hola',
+    date: '26/12/2022 20:40:20'
+  }
+]
+ecommerce> mensajes = [{"id": "55", "user": "matias@gmail.com", "mensaje": "Hola", "date": "26/12/2022 20:40:20"},
+...             {"id": "56", "user": "gonzalo@gmail.com", "mensaje": "Hola ,matias", "date": "26/12/2022 20:45:20"},
+...             {"id": "57", "user": "jorge@gmail.com", "mensaje": "Hola gonzalo y matias", "date": "26/12/2022 20:50:20"},
+...             {"id": "58", "user": "monica@gmail.com", "mensaje": "Hola a todos", "date": "26/12/2022 20:55:20"},
+...             {"id": "59", "user": "stephanie@gmail.com", "mensaje": "Buenas tardes", "date": "26/12/2022 21:00:20"},
+...             {"id": "60", "user": "paula@gmail.com", "mensaje": "Buenas noches", "date": "26/12/2022 21:05:20"},
+...             {"id": "61", "user": "pedro@gmail.com", "mensaje": "Hasta mañana", "date": "26/12/2022 21:10:20"},
+...             {"id": "62", "user": "maria@gmail.com", "mensaje": "Hasta pronto", "date": "26/12/2022 21:15:20"},
+...             {"id": "63", "user": "carlos@gmail.com", "mensaje": "Buenas noches", "date": "26/12/2022 21:20:20"},
+...             {"id": "64", "user": "jose@gmail.com", "mensaje": "Hola de nuevo", "date": "26/12/2022 21:25:20"}]
+[
+  {
+    id: '55',
+    user: 'matias@gmail.com',
+    mensaje: 'Hola',
+    date: '26/12/2022 20:40:20'
+  },
+  {
+    id: '56',
+    user: 'gonzalo@gmail.com',
+    mensaje: 'Hola matias',
+    date: '26/12/2022 20:45:20'
+  },
+  {
+    id: '57',
+    user: 'jorge@gmail.com',
+    mensaje: 'Hola gonzalo y matias',
+    date: '26/12/2022 20:50:20'
+  },
+  {
+    id: '58',
+    user: 'monica@gmail.com',
+    mensaje: 'Hola a todos',
+    date: '26/12/2022 20:55:20'
+  },
+  {
+    id: '59',
+    user: 'stephanie@gmail.com',
+    mensaje: 'Buenas tardes',
+    date: '26/12/2022 21:00:20'
+  },
+  {
+    id: '60',
+    user: 'paula@gmail.com',
+    mensaje: 'Buenas noches',
+    date: '26/12/2022 21:05:20'
+  },
+  {
+    id: '61',
+    user: 'pedro@gmail.com',
+    mensaje: 'Hasta mañana',
+    date: '26/12/2022 21:10:20'
+  },
+  {
+    id: '62',
+    user: 'maria@gmail.com',
+    mensaje: 'Hasta pronto',
+    date: '26/12/2022 21:15:20'
+  },
+  {
+    id: '63',
+    user: 'carlos@gmail.com',
+    mensaje: 'Buenas noches',
+    date: '26/12/2022 21:20:20'
+  },
+  {
+    id: '64',
+    user: 'jose@gmail.com',
+    mensaje: 'Hola de nuevo',
+    date: '26/12/2022 21:25:20'
+  }
+]
+ecommerce>
+
+ecommerce> Db.mensajes.insert(mensajes)
+ReferenceError: Db is not defined
+ecommerce> mensajes = [{"id": "55", "user": "matias@gmail.com", "mensaje": "Hola", "date": "26/12/2022 20:40:20"},
+...             {"id": "56", "user": "gonzalo@gmail.com", "mensaje": "Hola ,matias", "date": "26/12/2022 20:45:20"},
+...             {"id": "57", "user": "jorge@gmail.com", "mensaje": "Hola gonzalo y matias", "date": "26/12/2022 20:50:20"},
+...             {"id": "58", "user": "monica@gmail.com", "mensaje": "Hola a todos", "date": "26/12/2022 20:55:20"},
+...             {"id": "59", "user": "stephanie@gmail.com", "mensaje": "Buenas tardes", "date": "26/12/2022 21:00:20"},
+...             {"id": "60", "user": "paula@gmail.com", "mensaje": "Buenas noches", "date": "26/12/2022 21:05:20"},
+...             {"id": "61", "user": "pedro@gmail.com", "mensaje": "hasta mañana", "date": "26/12/2022 21:10:20"},
+...             {"id": "62", "user": "maria@gmail.com", "mensaje": "Hasta pronto", "date": "26/12/2022 21:15:20"},
+...             {"id": "63", "user": "carlos@gmail.com", "mensaje": "Buenas noches", "date": "26/12/2022 21:20:20"},
+...             {"id": "64", "user": "jose@gmail.com", "mensaje": "Hola de nuevo", "date": "26/12/2022 21:25:20"}]
+[
+  {
+    id: '55',
+    user: 'matias@gmail.com',
+    mensaje: 'Hola',
+    date: '26/12/2022 20:40:20'
+  },
+  {
+    id: '56',
+    user: 'gonzalo@gmail.com',
+    mensaje: 'Hola matias',
+    date: '26/12/2022 20:45:20'
+  },
+  {
+    id: '57',
+    user: 'jorge@gmail.com',
+    mensaje: 'Hola gonzalo y matias',
+    date: '26/12/2022 20:50:20'
+  },
+  {
+    id: '58',
+    user: 'monica@gmail.com',
+    mensaje: 'Hola a todos',
+    date: '26/12/2022 20:55:20'
+  },
+  {
+    id: '59',
+    user: 'stephanie@gmail.com',
+    mensaje: 'Buenas tardes',
+    date: '26/12/2022 21:00:20'
+  },
+  {
+    id: '60',
+    user: 'paula@gmail.com',
+    mensaje: 'Buenas noches',
+    date: '26/12/2022 21:05:20'
+  },
+  {
+    id: '61',
+    user: 'pedro@gmail.com',
+    mensaje: 'hasta mañana',
+    date: '26/12/2022 21:10:20'
+  },
+  {
+    id: '62',
+    user: 'maria@gmail.com',
+    mensaje: 'Hasta pronto',
+    date: '26/12/2022 21:15:20'
+  },
+  {
+    id: '63',
+    user: 'carlos@gmail.com',
+    mensaje: 'Buenas noches',
+    date: '26/12/2022 21:20:20'
+  },
+  {
+    id: '64',
+    user: 'jose@gmail.com',
+    mensaje: 'Hola de nuevo',
+    date: '26/12/2022 21:25:20'
+  }
+]
+ecommerce>
+
+ecommerce> db.mensajes.insert(mensajes)
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("63d2b600ff191fff802c3083"),
+    '1': ObjectId("63d2b600ff191fff802c3084"),
+    '2': ObjectId("63d2b600ff191fff802c3085"),
+    '3': ObjectId("63d2b600ff191fff802c3086"),
+    '4': ObjectId("63d2b600ff191fff802c3087"),
+    '5': ObjectId("63d2b600ff191fff802c3088"),
+    '6': ObjectId("63d2b600ff191fff802c3089"),
+    '7': ObjectId("63d2b600ff191fff802c308a"),
+    '8': ObjectId("63d2b600ff191fff802c308b"),
+    '9': ObjectId("63d2b600ff191fff802c308c")
+  }
+}
+ecommerce>
+
+ecommerce>
+
+ecommerce>  db.mensajes.find()
+[
+  {
+    _id: ObjectId("63d2b1f1ff191fff802c3082"),
+    id: '55',
+    user: 'matias@gmail.com',
+    mensaje: 'Hola',
+    date: '26/12/2022 20:40:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c3083"),
+    id: '55',
+    user: 'matias@gmail.com',
+    mensaje: 'Hola',
+    date: '26/12/2022 20:40:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c3084"),
+    id: '56',
+    user: 'gonzalo@gmail.com',
+    mensaje: 'Hola ,matias',
+    date: '26/12/2022 20:45:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c3085"),
+    id: '57',
+    user: 'jorge@gmail.com',
+    mensaje: 'Hola gonzalo y matias',
+    date: '26/12/2022 20:50:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c3086"),
+    id: '58',
+    user: 'monica@gmail.com',
+    mensaje: 'Hola a todos',
+    date: '26/12/2022 20:55:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c3087"),
+    id: '59',
+    user: 'stephanie@gmail.com',
+    mensaje: 'Buenas tardes',
+    date: '26/12/2022 21:00:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c3088"),
+    id: '60',
+    user: 'paula@gmail.com',
+    mensaje: 'Buenas noches',
+    date: '26/12/2022 21:05:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c3089"),
+    id: '61',
+    user: 'pedro@gmail.com',
+    mensaje: 'hasta mañana',
+    date: '26/12/2022 21:10:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c308a"),
+    id: '62',
+    user: 'maria@gmail.com',
+    mensaje: 'Hasta pronto',
+    date: '26/12/2022 21:15:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c308b"),
+    id: '63',
+    user: 'carlos@gmail.com',
+    mensaje: 'Buenas noches',
+    date: '26/12/2022 21:20:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c308c"),
+    id: '64',
+    user: 'jose@gmail.com',
+    mensaje: 'Hola de nuevo',
+    date: '26/12/2022 21:25:20'
+  }
+]
+ecommerce> db.mensajes.estimatedDocumentCount()
+10
+ecommerce> db.productos.estimatedDocumentCount()
+10
+ecommerce> db.mensajes.find()
+[
+  {
+    _id: ObjectId("63d2b600ff191fff802c3083"),
+    id: '55',
+    user: 'matias@gmail.com',
+    mensaje: 'Hola',
+    date: '26/12/2022 20:40:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c3084"),
+    id: '56',
+    user: 'gonzalo@gmail.com',
+    mensaje: 'Hola ,matias',
+    date: '26/12/2022 20:45:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c3085"),
+    id: '57',
+    user: 'jorge@gmail.com',
+    mensaje: 'Hola gonzalo y matias',
+    date: '26/12/2022 20:50:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c3086"),
+    id: '58',
+    user: 'monica@gmail.com',
+    mensaje: 'Hola a todos',
+    date: '26/12/2022 20:55:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c3087"),
+    id: '59',
+    user: 'stephanie@gmail.com',
+    mensaje: 'Buenas tardes',
+    date: '26/12/2022 21:00:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c3088"),
+    id: '60',
+    user: 'paula@gmail.com',
+    mensaje: 'Buenas noches',
+    date: '26/12/2022 21:05:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c3089"),
+    id: '61',
+    user: 'pedro@gmail.com',
+    mensaje: 'hasta mañana',
+    date: '26/12/2022 21:10:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c308a"),
+    id: '62',
+    user: 'maria@gmail.com',
+    mensaje: 'Hasta pronto',
+    date: '26/12/2022 21:15:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c308b"),
+    id: '63',
+    user: 'carlos@gmail.com',
+    mensaje: 'Buenas noches',
+    date: '26/12/2022 21:20:20'
+  },
+  {
+    _id: ObjectId("63d2b600ff191fff802c308c"),
+    id: '64',
+    user: 'jose@gmail.com',
+    mensaje: 'Hola de nuevo',
+    date: '26/12/2022 21:25:20'
+  }
+]
+ecommerce> db.productos.insert_one({id: 11, title:"Teclado Hyper X", price: 20000, thumbnail: "https://otraimage"})
+TypeError: db.productos.insert_one is not a function
+ecommerce>  id: 8,
+...     title: 'Teclado Blanco',
+Uncaught:
+SyntaxError: Missing semicolon. (2:9)
+
+  1 |  id: 8,
+> 2 |     title: 'Teclado Blanco',
+    |          ^
+  3 |
+
+ecommerce>     price: 250000,
+...
+ecommerce> db.productos.insertOne({id: 11, title:"Teclado Hyper X", price: 20000, thumbnail: "https://otraimage"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("63d2c3e6ff191fff802c308d")
+}
+ecommerce> db.productos.find()
+[
+  {
+    _id: ObjectId("63d2ae8fff191fff802c3081"),
+    id: 1,
+    title: 'Mouse Logitech tipo A',
+    price: 6078,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2afb989d2dbbbe3eb2849"),
+    id: 2,
+    title: 'Mouse Logitech Tipo B',
+    price: 5080,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b07189d2dbbbe3eb284a"),
+    id: 3,
+    title: 'Mouse Logitech Tipo C',
+    price: 6075,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b07889d2dbbbe3eb284b"),
+    id: 4,
+    title: 'Mouse Logitech tipo D',
+    price: 5098,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b07b89d2dbbbe3eb284c"),
+    id: 5,
+    title: 'Mouse logitech tipo E',
+    price: 4999,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b0ee89d2dbbbe3eb284d"),
+    id: 6,
+    title: 'Mouse logitech tipo F',
+    price: 6022,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b0ff89d2dbbbe3eb284e"),
+    id: 7,
+    title: 'Mouse logitech tipo G',
+    price: 7000,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b10f89d2dbbbe3eb284f"),
+    id: 8,
+    title: 'Mouse Logitech tipo F',
+    price: 5000,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b12689d2dbbbe3eb2850"),
+    id: 9,
+    title: 'Mouse logitech tipo I',
+    price: 5050,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b13a89d2dbbbe3eb2851"),
+    id: 10,
+    title: 'Mouse logitech tipo J',
+    price: 6099,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2c3e6ff191fff802c308d"),
+    id: 11,
+    title: 'Teclado Hyper X',
+    price: 20000,
+    thumbnail: 'https://otraimage'
+  }
+]
+ecommerce> db.productos.find({"price": {$lt: 1000}})
+[
+  {
+    _id: ObjectId("63d2ae8fff191fff802c3081"),
+    id: 1,
+    title: 'Mouse Logitech tipo A',
+    price: 6078,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2afb989d2dbbbe3eb2849"),
+    id: 2,
+    title: 'Mouse Logitech Tipo B',
+    price: 5080,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2c3e6ff191fff802c308d"),
+    id: 11,
+    title: 'Teclado Hyper X',
+    price: 20000,
+    thumbnail: 'https://otraimage'
+  }
+]
+ecommerce> db.productos.find({"price": {$gte: 500, $lte: 1000}})
+[
+  {
+    _id: ObjectId("63d2afb989d2dbbbe3eb2849"),
+    id: 2,
+    title: 'Mouse Logitech Tipo B',
+    price: 5080,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2c3e6ff191fff802c308d"),
+    id: 11,
+    title: 'Teclado Hyper X',
+    price: 20000,
+    thumbnail: 'https://otraimage'
+  }
+]
+ecommerce> db.productos.find({"price": {$gte: 500, $lte: 1000}})
+[
+  {
+    _id: ObjectId("63d2afb989d2dbbbe3eb2849"),
+    id: 2,
+    title: 'Mouse Logitech Tipo B',
+    price: 5080,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2c3e6ff191fff802c308d"),
+    id: 11,
+    title: 'Teclado Hyper X',
+    price: 20000,
+    thumbnail: 'https://otraimage'
+  }
+]
+ecommerce>  db.productos.find({"price": {$gte: 1000, $lte: 3000}})
+[
+  {
+    _id: ObjectId("63d2b07189d2dbbbe3eb284a"),
+    id: 3,
+    title: 'Mouse Logitech Tipo C',
+    price: 6075,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b07889d2dbbbe3eb284b"),
+    id: 4,
+    title: 'Mouse Logitech tipo D',
+    price: 5098,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b07b89d2dbbbe3eb284c"),
+    id: 5,
+    title: 'Mouse logitech tipo E',
+    price: 4999,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b0ee89d2dbbbe3eb284d"),
+    id: 6,
+    title: 'Mouse logitech tipo F',
+    price: 6022,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  }
+]
+ecommerce> db.productos.find({"price": {$lte: 1000}})
+[
+  {
+    _id: ObjectId("63d2ae8fff191fff802c3081"),
+    id: 1,
+    title: 'Mouse Logitech tipo A',
+    price: 6078,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2afb989d2dbbbe3eb2849"),
+    id: 2,
+    title: 'Mouse Logitech Tipo B',
+    price: 5080,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2c3e6ff191fff802c308d"),
+    id: 11,
+    title: 'Teclado Hyper X',
+    price: 20000,
+    thumbnail: 'https://otraimage'
+  }
+]
+ecommerce> db.productos.find({"price": {$gt: 1000}})
+[
+  {
+    _id: ObjectId("63d2b07189d2dbbbe3eb284a"),
+    id: 3,
+    title: 'Mouse Logitech Tipo C',
+    price: 6075,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b07889d2dbbbe3eb284b"),
+    id: 4,
+    title: 'Mouse Logitech tipo D',
+    price: 5098,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b07b89d2dbbbe3eb284c"),
+    id: 5,
+    title: 'Mouse logitech tipo E',
+    price: 4999,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b0ee89d2dbbbe3eb284d"),
+    id: 6,
+    title: 'Mouse logitech tipo F',
+    price: 6022,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b0ff89d2dbbbe3eb284e"),
+    id: 7,
+    title: 'Mouse logitech tipo G',
+    price: 7000,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b10f89d2dbbbe3eb284f"),
+    id: 8,
+    title: 'Mouse Logitech tipo F',
+    price: 5000,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b12689d2dbbbe3eb2850"),
+    id: 9,
+    title: 'Mouse logitech tipo I',
+    price: 5050,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b13a89d2dbbbe3eb2851"),
+    id: 10,
+    title: 'Mouse logitech tipo J',
+    price: 6099,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  }
+]
+ecommerce> db.productos.find({"price": {$gt: 3000}})
+[
+  {
+    _id: ObjectId("63d2b0ff89d2dbbbe3eb284e"),
+    id: 7,
+    title: 'Mouse logitech tipo G',
+    price: 7000,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b10f89d2dbbbe3eb284f"),
+    id: 8,
+    title: 'Mouse Logitech tipo F',
+    price: 5000,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b12689d2dbbbe3eb2850"),
+    id: 9,
+    title: 'Mouse logitech tipo I',
+    price: 5050,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b13a89d2dbbbe3eb2851"),
+    id: 10,
+    title: 'Mouse logitech tipo J',
+    price: 6099,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  }
+]
+ecommerce> db.productos.find({}, {"name": 1}).sort({"price": 1}).skip(2).limit(1)
+[ { _id: ObjectId("63d2c3e6ff191fff802c308d") } ]
+ecommerce> db.productos.find({ _id: ObjectId("63d2c3e6ff191fff802c308d") })
+[
+  {
+    _id: ObjectId("63d2c3e6ff191fff802c308d"),
+    id: 11,
+    title: 'Teclado Hyper X',
+    price: 20000,
+    thumbnail: 'https://otraimage'
+  }
+]
+ecommerce> db.productos.updateMany({}, {$set: {"stock": 100}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 11,
+  upsertedCount: 0
+}
+ecommerce> db.productos.find({ _id: ObjectId("63d2c3e6ff191fff802c308d") })
+[
+  {
+    _id: ObjectId("63d2c3e6ff191fff802c308d"),
+    id: 11,
+    title: 'Teclado Hyper X',
+    price: 20000,
+    thumbnail: 'https://otraimage',
+    stock: 100
+  }
+]
+ecommerce> db.productos.updateMany({"price": {$gt: 4000}}, {$set: {"stock": 0}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+ecommerce> db.productos.find({"price": {$gt: 3000}})
+[
+  {
+    _id: ObjectId("63d2b0ff89d2dbbbe3eb284e"),
+    id: 7,
+    title: 'Mouse logitech tipo G',
+    price: 7000,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63d2b10f89d2dbbbe3eb284f"),
+    id: 8,
+    title: 'Mouse Logitech tipo F',
+    price: 5000,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63d2b12689d2dbbbe3eb2850"),
+    id: 9,
+    title: 'Mouse logitech tipo I',
+    price: 5050,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png',
+    stock: 0
+  },
+  {
+    _id: ObjectId("63d2b13a89d2dbbbe3eb2851"),
+    id: 10,
+    title: 'Mouse logitech tipo J',
+    price: 6099,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png',
+    stock: 0
+  }
+]
+ecommerce> db.productos.deleteMany({"price": {$lt: 1000}})
+{ acknowledged: true, deletedCount: 3 }
+ecommerce> db.productos.find()
+[
+  {
+    _id: ObjectId("63d2b07189d2dbbbe3eb284a"),
+    id: 3,
+    title: 'Mouse Logitech Tipo C',
+    price: 6075,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63d2b07889d2dbbbe3eb284b"),
+    id: 4,
+    title: 'Mouse Logitech tipo D',
+    price: 5098,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63d2b07b89d2dbbbe3eb284c"),
+    id: 5,
+    title: 'Mouse logitech tipo E',
+    price: 4999,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63d2b0ee89d2dbbbe3eb284d"),
+    id: 6,
+    title: 'Mouse logitech tipo F',
+    price: 6022,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63d2b0ff89d2dbbbe3eb284e"),
+    id: 7,
+    title: 'Mouse logitech tipo G',
+    price: 7000,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63d2b10f89d2dbbbe3eb284f"),
+    id: 8,
+    title: 'Mouse Logitech tipo F',
+    price: 5000,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png',
+    stock: 100
+  },
+  {
+    _id: ObjectId("63d2b12689d2dbbbe3eb2850"),
+    id: 9,
+    title: 'Mouse logitech tipo I',
+    price: 5050,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png',
+    stock: 0
+  },
+  {
+    _id: ObjectId("63d2b13a89d2dbbbe3eb2851"),
+    id: 10,
+    title: 'Mouse logitech tipo J',
+    price: 6099,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png',
+    stock: 0
+  }
+]
+ecommerce> db.createUser({
+...   user: "jorge",
+...   pwd: "asd456",
+...   roles: [{ role: "read", db: "ecommerce" }]
+... })
+{ ok: 1 }
+ecommerce> db.auth("jorge", "asd456")
+{ ok: 1 }
+ecommerce> db.productos.updateMany({}, {$set: {"stock": 101}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 8,
+  modifiedCount: 8,
+  upsertedCount: 0
+}
+ecommerce> db.productos.updateMany({}, {$set: {"stock": 100}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 8,
+  modifiedCount: 8,
+  upsertedCount: 0
+}
+ecommerce>
