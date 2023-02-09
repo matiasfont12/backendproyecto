@@ -1,0 +1,79 @@
+[
+  {
+    _id: ObjectId("63d2ae8fff191fff802c3081"),
+    id: 1,
+    title: 'Mouse Logitech tipo A',
+    price: 6078,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2afb989d2dbbbe3eb2849"),
+    id: 2,
+    title: 'Mouse Logitech Tipo B',
+    price: 5080,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b07189d2dbbbe3eb284a"),
+    id: 3,
+    title: 'Mouse Logitech Tipo C',
+    price: 6075,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b07889d2dbbbe3eb284b"),
+    id: 4,
+    title: 'Mouse Logitech tipo D',
+    price: 5098,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b07b89d2dbbbe3eb284c"),
+    id: 5,
+    title: 'Mouse logitech tipo E',
+    price: 4999,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b0ee89d2dbbbe3eb284d"),
+    id: 6,
+    title: 'Mouse logitech tipo F',
+    price: 6022,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b0ff89d2dbbbe3eb284e"),
+    id: 7,
+    title: 'Mouse logitech tipo G',
+    price: 7000,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b10f89d2dbbbe3eb284f"),
+    id: 8,
+    title: 'Mouse Logitech tipo F',
+    price: 5000,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b12689d2dbbbe3eb2850"),
+    id: 9,
+    title: 'Mouse logitech tipo I',
+    price: 5050,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2b13a89d2dbbbe3eb2851"),
+    id: 10,
+    title: 'Mouse logitech tipo J',
+    price: 6099,
+    thumbnail: 'https://hardcorecomputacion.com.ar/wp-content/uploads/2021/01/mouse-gamer-logitech-g203-lightsync-usb.png'
+  },
+  {
+    _id: ObjectId("63d2c3e6ff191fff802c308d"),
+    id: 11,
+    title: 'Teclado Hyper X',
+    price: 20000,
+    thumbnail: 'https://otraimage'
+  }
+]
